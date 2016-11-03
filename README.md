@@ -22,6 +22,13 @@ INSTALLED_APPS = [
 ]
 ```
 
+Then generate tables by applying migrations:
+
+```shell
+$ python manage.py makemigrations django_pyowm
+$ python manage.py migrate
+```
+
 
 ## Features
 Models behave as all other Django models but they have a few useful 
@@ -32,7 +39,7 @@ functions:
   -  `<Model_instance>.to_entity(entity)` - turns the model instance to
      the corresponding PyOWM domain object instance
 
-## Usage examples
+## Quick usage examples
 
 ```python
 from pyowm import OWM
