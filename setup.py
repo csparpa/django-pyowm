@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-pyowm',
+    name='django_pyowm',
     version='0.1.0',
     packages=find_packages(),
     include_package_data=True,
@@ -19,7 +19,7 @@ setup(
     license='MIT License',
     description='A Django ORM interface to operate with PyOWM domain entities',
     long_description=README,
-    url='https://github.com/csparpa/django-pyowm',
+    url='https://github.com/csparpa/django_pyowm',
     author='Claudio Sparpaglione',
     author_email='csparpa@gmail.com',
     classifiers=[
@@ -30,7 +30,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        # Replace these appropriately if you are stuck on Python 2.
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',

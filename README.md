@@ -1,4 +1,4 @@
-# django-pyowm
+# django_pyowm
 
 A Django ORM interface for PyOWM domain entities
 
@@ -13,12 +13,12 @@ Python 2.7 and 3.2+ are supported.
 
 ## Install
 
-Add `django-pyowm` to the `INSTALLED_APPS` list into your Django project's `settings.py` file:
+Add `django_pyowm` to the `INSTALLED_APPS` list into your Django project's `settings.py` file:
  
 ```python
 INSTALLED_APPS = [
     ...
-    'django-pyowm'  # <---
+    'django_pyowm'  # <---
 ]
 ```
 
@@ -35,6 +35,10 @@ functions:
 ## Usage examples
 
 ```python
+from pyowm import OWM
+from django_pyowm import models
+
+
 # Get data an Observation from the API 
 owm = OWM(API_key='my_key')
 obs = owm.weather_at_place('London,UK')

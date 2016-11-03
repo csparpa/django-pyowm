@@ -13,7 +13,7 @@ settings.configure(
                     'django.contrib.contenttypes',
                     'django.contrib.sessions',
                     'django.contrib.admin',
-                    'db')
+                    'django_pyowm')
 )
 
 
@@ -21,6 +21,6 @@ django.setup()
 from django.test.runner import DiscoverRunner
 test_runner = DiscoverRunner(verbosity=1)
 
-failures = test_runner.run_tests(['db'])
+failures = test_runner.run_tests(['django_pyowm'])
 if failures:
     sys.exit(failures)
