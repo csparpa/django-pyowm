@@ -12,6 +12,10 @@ setup(
     version='0.1.0',
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+       'Django>=1.10.3,<2',
+       'pyowm>=2.5.0,<3'
+    ],
     license='MIT License',
     description='A Django ORM interface to operate with PyOWM domain entities',
     long_description=README,
