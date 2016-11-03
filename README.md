@@ -1,10 +1,14 @@
 # django-pyowm
 
-A reusable app providing a Django ORM interface to operate with PyOWM domain entities for OWM API version 2.5
+A Django ORM interface for PyOWM domain entities
 
 
-## Django support
-Django 1.10+ and Python 2.7 or 3.2+
+## Requirements
+
+  - Django 1.10+
+  - PyOWM 2.5+
+
+Python 2.7 and 3.2+ are supported.
 
 
 ## Install
