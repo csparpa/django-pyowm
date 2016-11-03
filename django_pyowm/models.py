@@ -56,6 +56,9 @@ class Location(models.Model):
             city_id=location_obj.get_ID(),
             country=location_obj.get_country())
 
+    class Meta:
+        app_label = 'django_pyowm'
+
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
             __name__,
@@ -140,6 +143,9 @@ class Weather(models.Model):
             humidex=weather_obj.get_humidex(),
             heat_index=weather_obj.get_heat_index())
 
+    class Meta:
+        app_label = 'django_pyowm'
+
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
             __name__,
@@ -190,6 +196,9 @@ class Observation(models.Model):
         self.location.save()
         self.weather.save()
         self.save()
+
+    class Meta:
+        app_label = 'django_pyowm'
 
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
@@ -264,6 +273,9 @@ class Forecast(models.Model):
             w.save()
         self.weathers = weats
         self.save()
+
+    class Meta:
+        app_label = 'django_pyowm'
 
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
@@ -344,6 +356,9 @@ class Station(models.Model):
         self.last_weather.save()
         self.save()
 
+    class Meta:
+        app_label = 'django_pyowm'
+
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
             __name__,
@@ -386,7 +401,6 @@ class StationHistory(models.Model):
             timeformatutils.timeformat(self.reception_time, 'unix'),
             data)
 
-
     @classmethod
     def from_entity(cls, stationhistory_obj):
         """
@@ -401,6 +415,9 @@ class StationHistory(models.Model):
             interval=stationhistory_obj.get_interval(),
             reception_time=stationhistory_obj.get_reception_time(timeformat='date'),
             measurements=json.dumps(stationhistory_obj.get_measurements()))
+
+    class Meta:
+        app_label = 'django_pyowm'
 
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
@@ -475,6 +492,9 @@ class UVIndex(models.Model):
         self.location.save()
         self.save()
 
+    class Meta:
+        app_label = 'django_pyowm'
+
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
             __name__,
@@ -547,6 +567,9 @@ class COIndex(models.Model):
         self.location.save()
         self.save()
 
+    class Meta:
+        app_label = 'django_pyowm'
+
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
             __name__,
@@ -618,6 +641,9 @@ class Ozone(models.Model):
         """
         self.location.save()
         self.save()
+
+    class Meta:
+        app_label = 'django_pyowm'
 
     def __repr__(self):
         return "<%s.%s - pk=%s>" % (
