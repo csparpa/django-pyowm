@@ -193,8 +193,12 @@ class Observation(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.location.save()
-        self.weather.save()
+        location = self.location
+        weather = self.weather
+        location.save()
+        weather.save()
+        self.location = location
+        self.weather = weather
         self.save()
 
     class Meta:
@@ -265,13 +269,9 @@ class Forecast(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.location.save()
-        weats = self.weathers
-        self.weathers = []
-        self.save()
-        for w in weats:
-            w.save()
-        self.weathers = weats
+        location = self.location
+        location.save()
+        self.location = location
         self.save()
 
     class Meta:
@@ -353,7 +353,9 @@ class Station(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.last_weather.save()
+        last_weather = self.last_weather
+        last_weather.save()
+        self.last_weather = last_weather
         self.save()
 
     class Meta:
@@ -489,7 +491,9 @@ class UVIndex(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.location.save()
+        location = self.location
+        location.save()
+        self.location = location
         self.save()
 
     class Meta:
@@ -564,7 +568,9 @@ class COIndex(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.location.save()
+        location = self.location
+        location.save()
+        self.location = location
         self.save()
 
     class Meta:
@@ -639,7 +645,9 @@ class Ozone(models.Model):
         Saves this model along with all related ones.
         :return: None
         """
-        self.location.save()
+        location = self.location
+        location.save()
+        self.location = location
         self.save()
 
     class Meta:
