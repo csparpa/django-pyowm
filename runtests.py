@@ -1,26 +1,17 @@
-import django, sys
+import django
+import os
+import sys
 from django.conf import settings
-
-settings.configure(
-    DEBUG=True,
-    DATABASES={
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-        }
-    },
-    USE_TZ=True,
-    INSTALLED_APPS=('django.contrib.auth',
-                    'django.contrib.contenttypes',
-                    'django.contrib.sessions',
-                    'django.contrib.admin',
-                    'django_pyowm')
-)
+from django.test.utils import get_runner
 
 
-django.setup()
-from django.test.runner import DiscoverRunner
-test_runner = DiscoverRunner(verbosity=1)
+def runtests():
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'test_settings'
+    django.setup()
+    TestRunner = get_runner(settings)
+    test_runner = TestRunner()
+    failures = test_runner.run_tests(['django_pyowm.tests'])
+    sys.exit(bool(failures))
 
-failures = test_runner.run_tests(['django_pyowm'])
-if failures:
-    sys.exit(failures)
+if __name__ == '__main__':
+    runtests()
