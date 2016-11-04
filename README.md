@@ -1,4 +1,4 @@
-# django_pyowm
+# Django PyOWM
 
 A Django ORM interface for PyOWM domain entities
 
@@ -8,12 +8,18 @@ A Django ORM interface for PyOWM domain entities
   - Django 1.10+
   - PyOWM 2.5+
 
-Python 2.7 and 3.2+ are supported.
+Python 2.7 is supported.
 
 
 ## Install
 
-Add `django_pyowm` to the `INSTALLED_APPS` list into your Django project's `settings.py` file:
+Install the library with `pip`:
+
+```shell
+$ pip install django_pyowm
+```
+
+Then add `django_pyowm` to the `INSTALLED_APPS` list into your Django project's `settings.py` file:
  
 ```python
 INSTALLED_APPS = [
@@ -22,7 +28,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Then generate tables by applying migrations:
+Finally generate tables by applying migrations:
 
 ```shell
 $ python manage.py makemigrations django_pyowm
@@ -38,6 +44,7 @@ functions:
      from the corresponding PyOWM domain object instance
   -  `<Model_instance>.to_entity(entity)` - turns the model instance to
      the corresponding PyOWM domain object instance
+  - `<Model_class>.save_all()` - persists the model instance along with all related objects
 
 ## Quick usage examples
 
@@ -66,6 +73,4 @@ original_obs = m.to_entity()
 ```
 
 ## Testing
-```shell
-$ python runtests.py
-```
+All details in file [docs/testing.md](docs/testing.md)
