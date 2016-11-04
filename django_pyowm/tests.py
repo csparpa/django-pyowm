@@ -11,7 +11,7 @@ from pyowm.webapi25.stationhistory import StationHistory as StationHistoryEntity
 from pyowm.webapi25.uvindex import UVIndex as UVIndexEntity
 from pyowm.webapi25.coindex import COIndex as COIndexEntity
 from pyowm.webapi25.ozone import Ozone as OzoneEntity
-from .models import Location, Weather, Observation, Forecast, Station, \
+from django_pyowm.models import Location, Weather, Observation, Forecast, Station, \
     StationHistory, UVIndex, COIndex, Ozone
 
 

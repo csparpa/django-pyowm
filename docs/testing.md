@@ -7,7 +7,7 @@ As `django_pyowm` is a Django app, it must be tested against a Django project, s
 First of all you need to have the app installed in your `PYTHONPATH`.
 Then create a test Django project and a test Django app with:
 
-```shel
+```shell
 $ django-admin startproject testproject
 $ cd testproject
 $ django-admin startapp testapp
@@ -29,6 +29,7 @@ Apply migrations with:
 
 ```
 $ cd testproject
+$ python manage.py makemigrations django_pyowm
 $ python manage.py migrate
 ```
 
