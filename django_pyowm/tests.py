@@ -11,7 +11,7 @@ from pyowm.webapi25.stationhistory import StationHistory as StationHistoryEntity
 from pyowm.webapi25.uvindex import UVIndex as UVIndexEntity
 from pyowm.webapi25.coindex import COIndex as COIndexEntity
 from pyowm.webapi25.ozone import Ozone as OzoneEntity
-from .models import Location, Weather, Observation, Forecast, Station, \
+from django_pyowm.models import Location, Weather, Observation, Forecast, Station, \
     StationHistory, UVIndex, COIndex, Ozone
 
 
@@ -305,6 +305,21 @@ class TestObservationModel(TestCase):
         Asserter.assertWeatherEntitiesEqual(self, expected.get_weather(),
                                           result.get_weather())
 
+    def test_save_all(self):
+        location = Location.from_entity(Databox.location)
+        weather = Weather.from_entity(Databox.weather)
+        observation = Observation(reception_time=Databox.reception_time,
+                                  location=location,
+                                  weather=weather)
+        self.assertIsNone(location.pk)
+        self.assertIsNone(weather.pk)
+        self.assertIsNone(observation.pk)
+
+        observation.save_all()
+        self.assertIsNotNone(location.pk)
+        self.assertIsNotNone(weather.pk)
+        self.assertIsNotNone(observation.pk)
+
 
 class TestForecastModel(TestCase):
 
@@ -338,6 +353,23 @@ class TestForecastModel(TestCase):
                                            result.get_location())
         for ex_w, res_w in zip(expected.get_weathers(), result.get_weathers()):
             Asserter.assertWeatherEntitiesEqual(self, ex_w, res_w)
+
+    def test_save_all(self):
+        weathers = [Weather.from_entity(w) for w in Databox.weathers]
+        location = Location.from_entity(Databox.location)
+        forecast = Forecast(interval=Databox.interval,
+                            reception_time=Databox.reception_time,
+                            location=location)
+        self.assertIsNone(location.pk)
+        for w in weathers:
+            self.assertIsNone(w.pk)
+        self.assertIsNone(forecast.pk)
+
+        for w in weathers:
+            w.save()
+        forecast.save_all()
+        self.assertIsNotNone(location.pk)
+        self.assertIsNotNone(forecast.pk)
 
 
 class TestStationModel(TestCase):
@@ -380,6 +412,22 @@ class TestStationModel(TestCase):
         self.assertEquals(expected.get_distance(), result.get_distance())
         Asserter.assertWeatherEntitiesEqual(self, expected.get_last_weather(),
                                             result.get_last_weather())
+
+    def test_save_all(self):
+        last_weather = Weather.from_entity(Databox.weather)
+        station = Station(name=Databox.station_name,
+                          station_id=Databox.station_id,
+                          station_type=Databox.station_type,
+                          station_status=Databox.station_status,
+                          lat=Databox.lat, lon=Databox.lon,
+                          distance=Databox.station_distance,
+                          last_weather=last_weather)
+        self.assertIsNone(last_weather.pk)
+        self.assertIsNone(station.pk)
+
+        station.save_all()
+        self.assertIsNotNone(last_weather.pk)
+        self.assertIsNotNone(station.pk)
 
 
 class TestStationHistoryModel(TestCase):
@@ -442,6 +490,21 @@ class TestUVIndexModel(TestCase):
         Asserter.assertLocationEntitiesEqual(self, expected.get_location(),
                                              result.get_location())
 
+    def test_save_all(self):
+        location = Location.from_entity(Databox.location)
+        uvindex = UVIndex(
+            reference_time=Databox.reference_time,
+            location=location,
+            value=Databox.uvindex_intensity,
+            interval=Databox.uvindex_interval,
+            reception_time=Databox.reception_time)
+        self.assertIsNone(location.pk)
+        self.assertIsNone(uvindex.pk)
+
+        uvindex.save_all()
+        self.assertIsNotNone(location.pk)
+        self.assertIsNotNone(uvindex.pk)
+
 
 class TestCOIndexModel(TestCase):
 
@@ -475,6 +538,21 @@ class TestCOIndexModel(TestCase):
         Asserter.assertLocationEntitiesEqual(self, expected.get_location(),
                                              result.get_location())
 
+    def test_save_all(self):
+        location = Location.from_entity(Databox.location)
+        coindex = COIndex(
+            reference_time=Databox.reference_time,
+            location=location,
+            interval=Databox.coindex_interval,
+            reception_time=Databox.reception_time,
+            co_samples=json.dumps(Databox.co_samples))
+        self.assertIsNone(location.pk)
+        self.assertIsNone(coindex.pk)
+
+        coindex.save_all()
+        self.assertIsNotNone(location.pk)
+        self.assertIsNotNone(coindex.pk)
+
 
 class TestOzoneModel(TestCase):
 
@@ -507,3 +585,18 @@ class TestOzoneModel(TestCase):
         self.assertEquals(expected.get_reception_time(), result.get_reception_time())
         Asserter.assertLocationEntitiesEqual(self, expected.get_location(),
                                              result.get_location())
+
+    def test_save_all(self):
+        location = Location.from_entity(Databox.location)
+        ozone = Ozone(
+            reference_time=Databox.reference_time,
+            location=location,
+            du_value=Databox.du_value,
+            interval=Databox.ozone_interval,
+            reception_time=Databox.reception_time)
+        self.assertIsNone(location.pk)
+        self.assertIsNone(ozone.pk)
+
+        ozone.save_all()
+        self.assertIsNotNone(location.pk)
+        self.assertIsNotNone(ozone.pk)
