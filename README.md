@@ -66,6 +66,4 @@ original_obs = m.to_entity()
 ```
 
 ## Testing
-```shell
-$ python runtests.py
-```
+Take a look at file [docs/testing.md](docs/testing.md).
