@@ -73,4 +73,4 @@ original_obs = m.to_entity()
 ```
 
 ## Testing
-All details in file [docs/testing.md](docs/testing.md)
+All details about testing are [here](https://github.com/csparpa/django-pyowm/wiki/Testing)
