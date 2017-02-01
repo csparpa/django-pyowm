@@ -11,6 +11,8 @@ A Django ORM interface for PyOWM domain entities
 Python 2.7 is supported.
 
 
+** Please notice that the API can be unstable as this project is still in beta testing **
+
 ## Install
 
 Install the library with `pip`:
