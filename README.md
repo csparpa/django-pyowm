@@ -11,6 +11,8 @@ A Django ORM interface for PyOWM domain entities
 Python 2.7 is supported.
 
 
+** Please notice that the API can be unstable as this project is still in beta testing **
+
 ## Install
 
 Install the library with `pip`:
@@ -73,4 +75,4 @@ original_obs = m.to_entity()
 ```
 
 ## Testing
-All details in file [docs/testing.md](docs/testing.md)
+All details about testing are [here](https://github.com/csparpa/django-pyowm/wiki/Testing)

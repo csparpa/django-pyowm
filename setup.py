@@ -23,6 +23,7 @@ setup(
     author='Claudio Sparpaglione',
     author_email='csparpa@gmail.com',
     classifiers=[
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Framework :: Django :: 1.10',
@@ -37,5 +38,5 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-    ],
+    ]
 )
